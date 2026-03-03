@@ -1,0 +1,72 @@
+/* src/components/profile/Profile.css */
+.profile-section {
+  padding-bottom: 2rem;
+}
+.profile-hero {
+  width: 110px; height: 110px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, var(--pink), var(--gold));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3.5rem;
+  margin: 0 auto 1rem;
+  box-shadow: 0 8px 32px rgba(255, 77, 109, 0.35);
+}
+.profile-name-big {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  text-align: center;
+}
+.profile-sub {
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.88rem;
+  margin-bottom: 2rem;
+}
+.settings-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+.settings-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+.settings-row span { font-size: 0.92rem; }
+.settings-row.clickable { cursor: pointer; }
+.settings-row.clickable:hover { background: #231c2e; }
+
+/* Toggle switch */
+.toggle {
+  width: 44px; height: 24px;
+  border-radius: 12px;
+  background: var(--border);
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s;
+  border: none;
+  flex-shrink: 0;
+}
+.toggle.on { background: var(--pink); }
+.toggle::after {
+  content: '';
+  position: absolute;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  top: 3px; left: 3px;
+  transition: left 0.2s;
+}
+.toggle.on::after { left: 23px; }
