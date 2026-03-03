@@ -8,38 +8,35 @@ REST API for the Ember dating app. Built with **Node.js**, **Express**, and **Mo
 
 ```
 ember-api/
-├── server.js                 // Entry point. Wires everything together.
-│
-├── app.js                    // Connects Middlewares & Routes
-│
-├── .env
-│
+├── server.js                         ← Entry point. Wires everything together.
 ├── package.json
 │
 ├── config/
-│   └── db.js                 ← MongoDB connection
+│   ├── mongodb.config.js             ← Connection Database
+│   └── express.config.js             ← Connects Middlewares & Routes
 │
 ├── routes/
-│   ├── authRoutes.js
-│   ├── profileRoutes.js
-│   ├── swipeRoutes.js
-│   ├── messageRoutes.js
+│   ├── auth.routes.js
+│   ├── profile.routes.js
+│   ├── swipe.routes.js
+│   └── message.routes.js
 │
 ├── middleware/
-│   ├── authMiddleware.js     ← JWT token verification
-│   └── errorHandler.js       ← Global error responses
+│   ├── auth.middleware.js            ← JWT token verification
+│   └── errorHandler.middleware.js    ← Global error responses
 │
 ├── controllers/
-│   ├── authController.js
-│   ├── profileController.js
-│   ├── swipeController.js
-│   └── messageController.js
+│   ├── auth.controller.js
+│   ├── profile.controller.js
+│   ├── swipe.controller.js
+│   └── message.controller.js
 │
-├── models/
-│   ├── User.js               ← User schema & model
-│   └── Message.js            ← Message schema & model
-
-└
+├── utils/
+│   └── global.utils.js               ← Contains all the helper functions used by controllers
+│
+└── models/                           ← Defines schemas & models
+    ├── user.model.js
+    └── message.model.js
 ```
 
 ---

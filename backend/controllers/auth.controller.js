@@ -7,7 +7,7 @@
   const User = require('../models/user.model')
 
   // Utils
-  const { createError } = require('../utils/errorHandler.utils')
+  const { createError } = require('../utils/global.utils')
 
 // Defing Helpers
 
