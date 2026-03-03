@@ -3,13 +3,8 @@
   // Models
   const User = require('../models/user.model')
 
-// Defining Helpers
-
-  const createError = (statusCode, message) => {
-    const err = new Error(message)
-    err.statusCode = statusCode
-    return err
-  }
+  // Utils
+  const { createError } = require('../utils/errorHandler.utils')
 
 // Defining Controllers
 

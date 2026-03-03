@@ -6,13 +6,10 @@
   // Models
   const User = require('../models/user.model')
 
-// Defing Helpers
+  // Utils
+  const { createError } = require('../utils/errorHandler.utils')
 
-  const createError = (statusCode, message) => {
-    const err = new Error(message)
-    err.statusCode = statusCode
-    return err
-  }
+// Defing Helpers
 
   const generateToken = (userId) => {
     return jwt.sign(
