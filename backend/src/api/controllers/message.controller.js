@@ -5,7 +5,7 @@
   const Message = require('../models/message.model')
 
   // Utils
-  const { createError } = require('../utils/global.utils')
+  const { createError } = require('../../utils/global.utils')
 
 // Defining Controllers
 

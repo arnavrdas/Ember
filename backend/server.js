@@ -1,15 +1,15 @@
 // Importing
 
   // Libraries
-  require('dotenv').config()
-  const http = require('http')
+  const dotenv = require('dotenv').config()
+  const http   = require('http')
 
   // Configs
-  const connectToMongDB = require('./config/mongodb.config')
-  const express         = require('./config/express.config')
+  const connectToMongDB = require('./src/config/mongodb.config')
+  const express         = require('./src/app')
 
 // Connecting to database
-connectToMongDB()
+connectToMongDB(dotenv)
 
 // Intializing Express App
 const server = http.createServer(express)

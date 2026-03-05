@@ -5,13 +5,14 @@
   const cors    = require('cors')
 
   // Middlewares
-  const { errorHandler } = require('../middlewares/errorHandler.middleware')
+  const { errorHandler } = require('./api/middlewares/errorHandler.middleware')
 
   // Routes
-  const authRoutes    = require('../routes/auth.router')
-  const profileRoutes = require('../routes/profile.router')
-  const swipeRoutes   = require('../routes/swipe.router')
-  const messageRoutes = require('../routes/message.router')
+  const authRoutes       = require('./api/routes/auth.router')
+  const profileRoutes    = require('./api/routes/profile.router')
+  const swipeRoutes      = require('./api/routes/swipe.router')
+  const messageRoutes    = require('./api/routes/message.router')
+  const userSwipeRoutes  = require('./api/routes/userSwipe.router')
 
 // Initializing Express App
 const app = express()
@@ -29,6 +30,7 @@ const app = express()
   app.use('/api/auth',     authRoutes)
   app.use('/api/profiles', profileRoutes)
   app.use('/api/messages', messageRoutes)
+  app.use('/api/users',    userSwipeRoutes)
   app.use('/api',          swipeRoutes)
 
   // Health Check Route

@@ -46,12 +46,50 @@ const userSchema = new mongoose.Schema(
     
     tags: [String],
 
-    likes:   [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-    passes:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-    matches: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    // Swipe related fields
+    likes: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }],
+    
+    passes: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }],
+    
+    matches: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }],
+    
+    // Preferences
+    preferences: {
+      gender: [String],
+      ageRange: {
+        min: { type: Number, default: 18 },
+        max: { type: Number, default: 100 }
+      },
+      maxDistance: { type: Number, default: 50 } // in miles/km
+    },
+    
+    // Location for distance-based matching
+    location: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        default: 'Point'
+      },
+      coordinates: {
+        type: [Number], // [longitude, latitude]
+        index: '2dsphere'
+      }
+    }
   },
   { timestamps: true }
 )
+
+// Create geospatial index for location-based queries
+userSchema.index({ 'location.coordinates': '2dsphere' })
 
 // Defining Middlewares / Mongoose "hooks"
 
@@ -60,6 +98,7 @@ const userSchema = new mongoose.Schema(
     this.password = await bcrypt.hash(this.password, 10)
     next()
   })
+
 
 // Defining Instance Methods
 
