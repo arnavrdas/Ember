@@ -56,12 +56,28 @@ export const profilesAPI = {
 
 // ── Swipe & Matches ──────────────────────────────────────
 export const swipeAPI = {
-  // POST /api/swipe  →  { matched: bool, matchedUser?: { _id, name, avatar } }
-  swipe: (targetId, direction) =>
-    request('POST', '/swipe', { targetId, direction }),
+  // POST /api/users/:targetId/like
+  like: (targetId) => request('POST', `/users/${targetId}/like`),
 
-  // GET /api/matches  →  array of matched user objects
+  // POST /api/users/:targetId/pass
+  pass: (targetId) => request('POST', `/users/${targetId}/pass`),
+
+  // GET /api/users/potential-matches
+  getPotentialMatches: () => request('GET', '/users/potential-matches'),
+
+  // GET /api/matches
   getMatches: () => request('GET', '/matches'),
+
+  // POST /api/swipe
+  swipe: (targetId, direction) => {
+    // Map directions to the new endpoints
+    if (direction === 'left') {
+      return swipeAPI.pass(targetId)
+    } else if (direction === 'right' || direction === 'super') {
+      return swipeAPI.like(targetId)
+    }
+    throw new Error('Invalid swipe direction')
+  },
 }
 
 // ── Messages ─────────────────────────────────────────────
