@@ -80,6 +80,22 @@ export const swipeAPI = {
   },
 }
 
+// ── Matches ──────────────────────────────────────────────
+export const matchAPI = {
+  // GET /api/matches - Get all matches
+  getAll: () => request('GET', '/matches'),
+  
+  // GET /api/matches/:matchId - Get specific match
+  getById: (matchId) => request('GET', `/matches/${matchId}`),
+  
+  // DELETE /api/matches/:matchId/unmatch - Unmatch a user
+  unmatch: (matchId, reason = '') => 
+    request('DELETE', `/matches/${matchId}/unmatch`, { reason }),
+  
+  // GET /api/matches/mutual - Get mutual matches
+  getMutual: () => request('GET', '/matches/mutual'),
+}
+
 // ── Messages ─────────────────────────────────────────────
 export const messagesAPI = {
   // POST /api/messages  →  saved message object

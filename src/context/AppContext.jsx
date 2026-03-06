@@ -16,12 +16,12 @@ export function AppProvider({ children }) {
   const [activeSection, setActiveSection] = useState('discover')
 
   // ── Discover ────────────────────────────────────────────
-  // Starts empty — populated by loadAppData() after login
   const [profiles, setProfiles] = useState([])
 
   // ── Matches & Conversations ──────────────────────────────
   const [matches, setMatches] = useState([])
   const [conversations, setConversations] = useState({})
+  const [matchDetails, setMatchDetails] = useState({})
 
   // ── Chat ────────────────────────────────────────────────
   const [activeChatUser, setActiveChatUser] = useState(null)
@@ -50,6 +50,53 @@ export function AppProvider({ children }) {
       setMatches(fetchedMatches.map(m => ({ ...m, id: m._id, isNew: false })))
     } catch (err) {
       console.error('Failed to load app data:', err.message)
+    }
+  }
+
+  // ── Fetch specific match details ────────────────────────
+  const loadMatchDetails = async (matchId) => {
+    try {
+      const data = await matchAPI.getById(matchId)
+      if (data.success) {
+        setMatchDetails(prev => ({
+          ...prev,
+          [matchId]: data.match
+        }))
+        return data.match
+      }
+    } catch (err) {
+      console.error('Failed to load match details:', err.message)
+      showToast('Failed to load match details', 'error')
+    }
+  }
+
+  // ── Unmatch a user ──────────────────────────────────────
+  const unmatchUser = async (matchId, reason = '') => {
+    try {
+      const response = await matchAPI.unmatch(matchId, reason)
+      if (response.success) {
+        // Remove the match from the matches list
+        setMatches(prev => prev.filter(m => m.id !== matchId))
+        // Remove from conversations
+        setConversations(prev => {
+          const newConv = { ...prev }
+          const matchToRemove = matches.find(m => m.id === matchId)
+          if (matchToRemove?.userId) {
+            delete newConv[matchToRemove.userId]
+          }
+          return newConv
+        })
+        // If this was the active chat, close it
+        if (activeChatUser?.id === matchId) {
+          setActiveChatUser(null)
+        }
+        showToast('Successfully unmatched user', 'success')
+        return true
+      }
+    } catch (err) {
+      console.error('Failed to unmatch user:', err.message)
+      showToast('Failed to unmatch user', 'error')
+      return false
     }
   }
 

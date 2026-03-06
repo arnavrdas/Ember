@@ -49,3 +49,49 @@
   text-transform: uppercase;
   margin-top: 0.1rem;
 }
+
+.match-actions-overlay {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.match-card:hover .match-actions-overlay {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.match-action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.match-action-btn:hover {
+  background: var(--pink);
+  transform: scale(1.1);
+}
+
+.chat-btn:hover {
+  background: linear-gradient(135deg, var(--pink), var(--gold));
+}
