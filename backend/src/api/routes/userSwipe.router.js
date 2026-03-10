@@ -11,7 +11,8 @@ const router  = express.Router()
   const {
     likeUser,
     passUser,
-    getPotentialMatches
+    getPotentialMatches,
+    getMatches
   } = require('../controllers/swipe.controller')
 
 // Middlewares
@@ -21,5 +22,6 @@ router.use(protect)
 router.post   ('/:targetId/like',    likeUser)
 router.post   ('/:targetId/pass',    passUser)
 router.get    ('/potential-matches', getPotentialMatches)
+router.get    ('/my-matches',        getMatches)
 
 module.exports = router

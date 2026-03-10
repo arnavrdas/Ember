@@ -45,13 +45,28 @@
         const targetLikesCurrentUser = targetUser.likes.includes(currentUserId)
         
         if (targetLikesCurrentUser) {
-          // Create a match
+          // Create a match in User.matches on both sides
           await User.findByIdAndUpdate(currentUserId, { 
             $addToSet: { matches: targetId } 
           })
           await User.findByIdAndUpdate(targetId, { 
             $addToSet: { matches: currentUserId } 
           })
+
+          const currentUser2 = await User.findById(currentUserId).select('name avatar')
+
+          // Notify the other user in real-time via Socket.io
+          const io = req.app.get('io')
+          if (io) {
+            const { emitToUser } = require('../../socket/socket')
+            emitToUser(io, targetId.toString(), 'match:new', {
+              matchedUser: {
+                id:     currentUser2._id,
+                name:   currentUser2.name,
+                avatar: currentUser2.avatar || '😊',
+              }
+            })
+          }
 
           return res.json({
             matched: true,
