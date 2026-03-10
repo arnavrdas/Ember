@@ -5,14 +5,15 @@ import { useApp } from '../../context/AppContext'
 import { authAPI } from '../../api/index'
 
 export default function AuthScreen() {
-  const { setCurrentUser, loadAppData } = useApp()
+  const { login } = useApp()
   const [tab, setTab] = useState('login') // 'login' | 'register'
 
-  // Called by both forms on success: store token, set user, load data
+  // Called by both forms on success
   const handleSuccess = async (data) => {
-    localStorage.setItem('token', data.token)
-    setCurrentUser({ id: data._id, name: data.name, avatar: data.avatar, email: data.email })
-    await loadAppData()
+    await login(
+      { id: data._id, name: data.name, avatar: data.avatar, email: data.email },
+      data.token
+    )
   }
 
   return (

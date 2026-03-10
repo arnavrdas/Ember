@@ -122,3 +122,114 @@
   transition: transform 0.15s, box-shadow 0.15s;
 }
 .send-btn:hover { transform: scale(1.08); box-shadow: 0 6px 20px rgba(255, 77, 109, 0.4); }
+
+/* ── Online pip on avatar ── */
+.conv-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+.online-pip {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 12px;
+  height: 12px;
+  background: #2ecc71;
+  border-radius: 50%;
+  border: 2px solid var(--bg, #0d0a0e);
+}
+
+/* ── Typing label in preview ── */
+.typing-label {
+  color: var(--pink);
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+/* ── Message wrappers ── */
+.msg-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.msg-wrapper.me   { align-items: flex-end; }
+.msg-wrapper.them { align-items: flex-start; }
+
+.msg-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.15rem;
+  padding: 0 0.25rem;
+}
+.msg-wrapper.me   .msg-meta { justify-content: flex-end; }
+.msg-wrapper.them .msg-meta { justify-content: flex-start; }
+
+.msg-time {
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+.msg-read-receipt {
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.msg-read-receipt.sent { color: var(--muted); }
+.msg-read-receipt.read { color: #2ecc71; }
+
+/* ── Online / offline status ── */
+.status-online  { color: #2ecc71; }
+.status-offline { color: var(--muted); }
+
+/* ── Typing bubble ── */
+.typing-bubble {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.75rem 1.1rem;
+  min-width: 56px;
+}
+.typing-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--muted);
+  animation: typingBounce 1.2s infinite ease-in-out;
+}
+.typing-dot:nth-child(1) { animation-delay: 0s; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30%            { transform: translateY(-6px); opacity: 1; }
+}
+
+/* ── History loading spinner ── */
+.chat-loading {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
+}
+.chat-loading-dots {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+.chat-loading-dots span {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--pink);
+  animation: typingBounce 1.2s infinite ease-in-out;
+}
+.chat-loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.chat-loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+/* ── Send button disabled ── */
+.send-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}

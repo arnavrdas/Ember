@@ -4,17 +4,14 @@ import './Profile.css'
 import { useApp } from '../../context/AppContext'
 
 export default function Profile() {
-  const { currentUser, setCurrentUser } = useApp()
+  const { currentUser, logout } = useApp()
 
   // Local state for toggle switches
   const [notifications,  setNotifications]  = useState(true)
   const [showOnDiscover, setShowOnDiscover]  = useState(true)
   const [location,       setLocation]        = useState(false)
 
-  const handleLogout = () => {
-    localStorage.removeItem('token')
-    setCurrentUser(null)
-  }
+  const handleLogout = () => logout()
 
   return (
     <div className="profile-section">

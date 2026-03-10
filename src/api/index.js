@@ -66,7 +66,7 @@ export const swipeAPI = {
   getPotentialMatches: () => request('GET', '/users/potential-matches'),
 
   // GET /api/matches
-  getMatches: () => request('GET', '/matches'),
+  getMatches: () => request('GET', '/users/my-matches'),
 
   // POST /api/swipe
   swipe: (targetId, direction) => {
