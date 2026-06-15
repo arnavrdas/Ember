@@ -1,0 +1,235 @@
+/* src/components/messages/Messages.css */
+
+/* ── Conversation List ── */
+.conv-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.conv-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.conv-item:hover { background: #231c2e; transform: translateX(4px); }
+.conv-avatar {
+  width: 52px; height: 52px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--pink), var(--gold));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+.conv-info { flex: 1; min-width: 0; }
+.conv-name    { font-weight: 500; font-size: 0.95rem; }
+.conv-preview { color: var(--muted); font-size: 0.82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 0.15rem; }
+.conv-meta    { display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem; }
+.conv-time    { font-size: 0.75rem; color: var(--muted); flex-shrink: 0; }
+.unread-dot   { width: 8px; height: 8px; background: var(--pink); border-radius: 50%; flex-shrink: 0; }
+
+/* ── Chat View ── */
+.chat-view {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: rgba(13, 10, 14, 0.9);
+  backdrop-filter: blur(16px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.chat-header-avatar {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--pink), var(--gold));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+}
+.chat-header-info   { flex: 1; }
+.chat-header-name   { font-weight: 500; }
+.chat-header-status { font-size: 0.78rem; color: #2ecc71; }
+
+.messages-list {
+  flex: 1;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  overflow-y: auto;
+}
+.chat-empty {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 2rem 0;
+}
+.msg {
+  max-width: 72%;
+  padding: 0.75rem 1.1rem;
+  border-radius: 18px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  animation: popIn 0.2s ease both;
+}
+.msg.them { background: var(--card); border: 1px solid var(--border); border-bottom-left-radius: 4px; align-self: flex-start; }
+.msg.me   { background: linear-gradient(135deg, var(--pink), #c0392b); color: #fff; border-bottom-right-radius: 4px; align-self: flex-end; }
+
+.chat-input-row {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid var(--border);
+  background: rgba(13, 10, 14, 0.9);
+  backdrop-filter: blur(16px);
+  position: sticky;
+  bottom: 0;
+}
+.chat-input {
+  flex: 1;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 0.85rem 1.1rem;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.chat-input:focus { border-color: var(--pink); }
+.send-btn {
+  width: 46px; height: 46px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--pink), #c0392b);
+  color: #fff;
+  font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.send-btn:hover { transform: scale(1.08); box-shadow: 0 6px 20px rgba(255, 77, 109, 0.4); }
+
+/* ── Online pip on avatar ── */
+.conv-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+.online-pip {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 12px;
+  height: 12px;
+  background: #2ecc71;
+  border-radius: 50%;
+  border: 2px solid var(--bg, #0d0a0e);
+}
+
+/* ── Typing label in preview ── */
+.typing-label {
+  color: var(--pink);
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+/* ── Message wrappers ── */
+.msg-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.msg-wrapper.me   { align-items: flex-end; }
+.msg-wrapper.them { align-items: flex-start; }
+
+.msg-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.15rem;
+  padding: 0 0.25rem;
+}
+.msg-wrapper.me   .msg-meta { justify-content: flex-end; }
+.msg-wrapper.them .msg-meta { justify-content: flex-start; }
+
+.msg-time {
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+.msg-read-receipt {
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.msg-read-receipt.sent { color: var(--muted); }
+.msg-read-receipt.read { color: #2ecc71; }
+
+/* ── Online / offline status ── */
+.status-online  { color: #2ecc71; }
+.status-offline { color: var(--muted); }
+
+/* ── Typing bubble ── */
+.typing-bubble {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.75rem 1.1rem;
+  min-width: 56px;
+}
+.typing-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--muted);
+  animation: typingBounce 1.2s infinite ease-in-out;
+}
+.typing-dot:nth-child(1) { animation-delay: 0s; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30%            { transform: translateY(-6px); opacity: 1; }
+}
+
+/* ── History loading spinner ── */
+.chat-loading {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
+}
+.chat-loading-dots {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+.chat-loading-dots span {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--pink);
+  animation: typingBounce 1.2s infinite ease-in-out;
+}
+.chat-loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.chat-loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+/* ── Send button disabled ── */
+.send-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
