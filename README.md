@@ -1,20 +1,13 @@
-<div align="center">
-
-  # Ember
-
-</div>
+# Ember
 
 A real-time dating app with swipe-based matching, instant messaging, and live presence indicators.
-<br><br>
 
-<p align="center">
-  <a href="https://ember.arnavdas.in">
-    <img src="https://img.shields.io/badge/-Live_Demo-green?style=for-the-badge" />
-  </a>
-  <!-- <a href="https://youtu.be/VIDEO_ID">
-    <img src="https://img.shields.io/badge/-YouTube-red?style=for-the-badge&logo=youtube" />
-  </a> -->
-</p>
+<a href="https://ember.arnavdas.in">
+  <img src="https://img.shields.io/badge/-Live_Demo-green?style=for-the-badge" />
+</a>
+<!-- <a href="https://youtu.be/VIDEO_ID">
+  <img src="https://img.shields.io/badge/-YouTube-red?style=for-the-badge&logo=youtube" />
+</a> -->
 <!-- <br> -->
 <!-- ![Demo GIF](docs/GIF_NAME.gif) -->
 <br><br><br>

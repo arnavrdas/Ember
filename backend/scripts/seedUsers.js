@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
-const User = require('../models/user.model')
+const User = require('../src/api/models/user.model')
 
 dotenv.config()
 
