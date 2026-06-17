@@ -144,7 +144,7 @@ const sampleUsers = [
 const seedUsers = async () => {
   try {
     // Connect to MongoDB
-    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/ember')
+    await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/ember')
     console.log('📦 Connected to MongoDB')
 
     // Clear existing users if specified
