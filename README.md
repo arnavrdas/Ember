@@ -37,7 +37,7 @@ The backend and frontend are independent packages that run as separate processes
 Browser  ──HTTP──▶  Express API  ──Mongoose──▶  MongoDB
          ◀───WS───  Socket.io
 ```
-<br><br><br>
+<br><br>
 
 ## Tech Stack
 - **Backend:** Node.js, Express

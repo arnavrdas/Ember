@@ -4,7 +4,7 @@
 // Change BASE_URL to point at your running backend.
 // ─────────────────────────────────────────────────────────
 
-const BASE_URL = 'http://localhost:5000/api'  // ← your Express server
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 // ── Core fetch wrapper ───────────────────────────────────
 // Every request goes through here so error handling is consistent.
