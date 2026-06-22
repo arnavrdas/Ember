@@ -2,7 +2,7 @@
 import { useEffect, useRef, useCallback } from 'react'
 import { io } from 'socket.io-client'
 
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL
+const SOCKET_URL = import.meta.env.VITE_API_URL
 
 export function useSocket({ token, onMessage, onMessageSent, onReadAck, onTyping, onOnline, onOffline, onOnlineList, onNewMatch }) {
   const socketRef = useRef(null)
