@@ -6,8 +6,10 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "seed": "node scripts/seedUsers.js",
-    "seed:clear": "node scripts/seedUsers.js --clear",
+    "seed:users": "node scripts/seedUsers.js",
+    "seed:users:clear": "node scripts/seedUsers.js --clear",
+    "seed:matches": "node scripts/seedMatches.js",
+    "seed:matches:clear": "node scripts/seedMatches.js -- --clear",
     "clear:messages": "node scripts/clear_messages.js --confirm"
   },
   "dependencies": {
